@@ -9,6 +9,19 @@ class BasePreprocessor(ABC):
         pass
 
 
+class DataPreprocessor:
+    def __init__(self, preprocessors=None):
+        self.preprocessors = preprocessors if preprocessors else []
+
+    def add_preprocessor(self, preprocessor):
+        self.preprocessors.append(preprocessor)
+
+    def preprocess_data(self, data):
+        for preprocessor in self.preprocessors:
+            data = preprocessor.process(data)
+        return data
+
+
 class NaNPreprocessor(BasePreprocessor):
     def __init__(self, strategy: str = 'auto', fill_value: Union[float, str] = None,
                  columns: List[str] = None):
@@ -56,3 +69,13 @@ class NaNPreprocessor(BasePreprocessor):
             data[column].fillna(data[column].median(), inplace=True)
         else:
             data[column].fillna(data[column].mode()[0], inplace=True)
+
+
+if __name__=="__main__":
+    data_preprocessor = DataPreprocessor()
+
+    # 添加所需的预处理器
+    data_preprocessor.add_preprocessor(NaNPreprocessor())
+
+    # 执行预处理
+    processed_data = data_preprocessor.preprocess_data(raw_data)
