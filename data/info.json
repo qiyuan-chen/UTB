@@ -1,0 +1,37 @@
+{
+    "test.csv": {
+        "dataset_info": {
+            "length": {
+                "rawdata_num_rows": 891,
+                "rawdata_num_cols": 12,
+                "cleaned_num_rows": 891,
+                "cleaned_num_cols": 891,
+                "cleaned_num_rows_without_target": 891,
+                "num_numeric_features": 3,
+                "num_categorical_features": 5,
+                "num_text_features": 3
+            },
+            "feature": {
+                "numeric_features": [
+                    "PassengerId",
+                    "Age",
+                    "Fare"
+                ],
+                "categorical_features": [
+                    "Pclass",
+                    "Sex",
+                    "SibSp",
+                    "Parch",
+                    "Embarked"
+                ],
+                "text_features": [
+                    "Name",
+                    "Ticket",
+                    "Cabin"
+                ]
+            }
+        },
+        "target": "Survived",
+        "task_type": "classification"
+    }
+}
